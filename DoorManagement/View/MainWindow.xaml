@@ -1,0 +1,56 @@
+﻿<Window x:Class="DoorManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:UserControls="clr-namespace:DoorManagement.View"
+       Title="Door Management" 
+    Height="500" Width="1000" >
+  <Window.Resources>
+    <Style x:Key="myDoors" TargetType="{x:Type ListBoxItem}">
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+  </Window.Resources>
+  
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.928*"/>
+      <RowDefinition Height="0.072*"/>
+    </Grid.RowDefinitions>
+    <ListBox x:Name="doorListView" 
+                 HorizontalAlignment="Stretch" 
+				 VerticalAlignment="Stretch"
+                 ItemContainerStyle="{StaticResource myDoors}"
+						 Grid.ColumnSpan="2">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <UserControls:DoorControl/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <Button x:Name="btnLoadData"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" 
+                Content="Refresh Doors" 
+                Grid.Row="1" 
+                Click="btnLoadData_Click" 
+				Grid.ColumnSpan="1" />
+    <TextBox x:Name="NewDoorName"
+        HorizontalAlignment="Left" 
+				VerticalAlignment="Top"
+				Grid.Row="1" Grid.Column="1" Width="400" Height="30" ></TextBox>
+    <Button x:Name="btnAddDoor" 
+				HorizontalAlignment="Right" 
+				VerticalAlignment="Stretch" 
+				Content="Add Door" 
+				Grid.Row="1" 
+				Grid.Column="1" Click="btnAddDoor_Click"/>
+  </Grid>
+</Window>
